@@ -1,3 +1,18 @@
+import { useState } from "react"
+import styles from './App.css'
 export default function App() {
-  return <h1>Hello World</h1>;
+  const [ current, setCurrent ] = useState('Select a Date')
+  const handleChange = (e) => {
+    setCurrent(e.target.value)
+  }
+  return (
+  <>
+      <div className={styles.container}>
+          <button>Undo</button>
+          <button>Redo</button>
+          <input type='date' name='date' id='date' value={current} onChange={handleChange}></input>
+          <span>{current}</span>
+      </div>
+  </>
+  )
 }
