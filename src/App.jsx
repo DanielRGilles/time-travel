@@ -6,13 +6,13 @@ export default function App() {
     setCurrent(e.target.value)
   }
   return (
-  <>
+  <main className={styles.main}>
       <div className={styles.container}>
-          <button>Undo</button>
-          <button>Redo</button>
-          <input type='date' name='date' id='date' value={current} onChange={handleChange}></input>
+          <button className={styles.button}>Undo</button>
+          <button className={styles.button}>Redo</button>
+          <section className={styles.input}><input type='date' name='date' id='date' value={current} onChange={handleChange}></input></section>
           <span>{current}</span>
       </div>
-  </>
+  </main>
   )
 }
