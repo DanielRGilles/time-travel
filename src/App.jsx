@@ -48,7 +48,7 @@ export default function App() {
             type='date'
              name='date' 
              id='date' 
-             aria-label='date select'
+             aria-label='date'
              value={current} 
              onChange={({ target }) => save(target.value)}></input>
           </section>
