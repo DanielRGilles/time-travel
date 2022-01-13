@@ -1,16 +1,22 @@
 import { useState } from "react"
 import styles from './App.css';
 
- function useTimeTravel()  {
-    const [ history, setHistory ] = useState([''])
-    const [index, setIndex ] = useState(0);
-    const current = history[index];
-    const [ error, setError ] = useState('')
+ const useTimeTravel = (date= '' ) => {
+    const [history, setHistory] = useState(date ? [date] : [] )
+    const [ index, setIndex ] = useState(-1);
+    const current = index > -1 ? history[index] : date;
+    const [error, setError ] = useState('');
       
-    const save = (e) => {
-      setHistory([...history, e.target.value ]);
-      setIndex(history.length)
-      setError('')
+    const save = (value) => {
+      setHistory((prevDates) => {
+        const first = prevDates.slice(0, index + 1);
+        const second = prevDates.slice(index + 1, prevDates.length);
+        return index < prevDates.length - 1
+        ? [...first, value, ...second]
+        : [...prevDates, value];
+      })
+      setError('');
+      setIndex((prevIndex) => prevIndex + 1);
       }
 
     const undo = () => {
@@ -33,7 +39,7 @@ import styles from './App.css';
 
 
 export default function App() {
-  const { save, redo, undo, current, error } = useTimeTravel()
+  const { save, redo, undo, current, error, } = useTimeTravel()
   return (
   <main className={styles.main}>
       <div className={styles.container}>
@@ -44,7 +50,7 @@ export default function App() {
              id='date' 
              aria-label='date select'
              value={current} 
-             onChange={save}></input>
+             onChange={({ target }) => save(target.value)}></input>
           </section>
           <span aria-label='output'>{current ? current : 'Please select a date'}</span>
           <div>
@@ -53,6 +59,9 @@ export default function App() {
          </div>
          {error ? <h2 className={styles.error}>{error}</h2> : null}
       </div>
+      {console.log()}
   </main>
   )
 }
+
+
