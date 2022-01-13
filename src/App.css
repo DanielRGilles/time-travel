@@ -7,13 +7,13 @@
     display: flex;
     justify-content: center;
     height: 100vh;
-    background-color: darkcyan;
+    background-color: rgb(177, 164, 214);
 
 }
 .container {
     display: flex;
     flex-direction: column;
-    width: 200px; 
+    width: 300px; 
     padding: 5px;
     margin: 5px;
 }
@@ -28,6 +28,7 @@
     border-radius:15px;
     cursor: pointer;
     margin: 5px;
+    width: 25%;
 }
 .input {
     align-self: center;
@@ -40,4 +41,8 @@
     background-color: coral;
     border: ridge 3px black;
     border-radius: 7px;
+}
+.error {
+    color: rgb(85, 7, 7);
+    font-size: larger;
 }
